@@ -16,8 +16,9 @@ I took a creative step by making:
 1. **TweetCleaner**: removes "RT", tags (@....), links (http://....), and empty spaces from each tweet content 
 2. **StatisticsAnalyzer**: uses the tweets, the *location*, *followers_count*, and *statuses_count* to estimate the percentage of US citizens from the tweets, to report the total followers count and the total statuses count, and to evaluate the list of emojis to report the top most used ones.
 
-A Twitter Cloud example:
-(https://github.com/dannyphan2910/twittercloud/blob/master/test.png)
+**A Twitter Cloud example:**
+
+![example twitter cloud](https://github.com/dannyphan2910/twittercloud/blob/master/test.png)
 
 To replicate/experiment with this project:
 1. Get your CONSUMER_KEY, CONSUMER_SECRET, TOKEN, TOKEN_SECRET from Twitter: developer.twitter.com then replace it (or set environment variables for the JUnit test file (in src/test/java) - I used Eclipse for this Java project) in the TweetRetriever.java file (in src/main/java)
