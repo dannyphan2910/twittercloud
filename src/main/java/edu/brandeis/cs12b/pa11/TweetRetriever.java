@@ -67,6 +67,7 @@ public class TweetRetriever {
 		
 		// Connects to the HoseBird API to retrieve Tweets from Twitter
 		hosebirdClient.connect();
+		System.out.println("Start collecting tweets...");
 		addTweets(msgQueue);
 		hosebirdClient.stop();
 	}
@@ -83,6 +84,8 @@ public class TweetRetriever {
 		StatusesFilterEndpoint hosebirdEndpoint = new StatusesFilterEndpoint();
 		
 		hosebirdEndpoint.trackTerms(terms);
+		
+		System.out.println("Adding authentication...");
 
 		// Adds authentication
 		Authentication hosebirdAuth = new OAuth1(
@@ -90,6 +93,8 @@ public class TweetRetriever {
 				System.getenv("CONSUMER_SECRET"),
 				System.getenv("TOKEN"),
 				System.getenv("TOKEN_SECRET"));
+		
+		System.out.println("Added authentication...");
 		
 		// Connects to service and start watching for the terms of interest
 		ClientBuilder builder = new ClientBuilder()
@@ -123,11 +128,14 @@ public class TweetRetriever {
 	 * @param msgQueue the BlockingQueue containing incoming tweets data
 	 */
 	private void addTweets(BlockingQueue<String> msgQueue) {
+		int count = 0;
 		// Until we've gather enough tokens, parses each tweet from Twitter's JSONObject, cleans it, and adds it to the List
 		while (tweets.size() < numberTweets) {
 			String msg = "";
 			try {
 				msg = msgQueue.take();
+				count++;
+				if (count % 100 == 0) System.out.println(msg);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

@@ -15,7 +15,7 @@ public class TwitterCloudTests {
 	@Test
 	public void test1() throws Exception{
 		TwitterCloud tc = new TwitterCloud();
-		tc.makeCloud(new String[] {"miley", "cyrus" }, "test.png", 4000);
+		tc.makeCloud(new String[] {"miley", "cyrus" }, "test.png", 1000);
 		File file = new File("test.png");
 		assertTrue(file.exists());
 		List<String> tokenList = tc.getWords();
